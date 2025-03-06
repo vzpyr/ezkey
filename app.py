@@ -6,7 +6,7 @@ import os
 import random
 import string
 
-ADMIN_PASSWORD = "XXXXXXXX"
+admin_password = ""
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
@@ -101,4 +101,4 @@ def verify():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    app.run()
