@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ezkey</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+        <div class="container">
+            <a style="text-decoration: none;" href="/"><h1>ezkey</h1></a>
+            <form method="post">
+                <input type="password" name="password" placeholder="password" required>
+                <button type="submit">login</button>
+            </form>
+            {% if error %}
+            <div class="error">{{ error }}</div>
+            {% endif %}
+        </div>
+    </body>
+</html>

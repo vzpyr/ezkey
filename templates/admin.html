@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>easykey</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+        <div class="container">
+            <a style="text-decoration: none;" href="/"><h1>ezkey</h1></a>
+            <div class="button-group">
+                <form action="{{ url_for('create_license') }}" method="post">
+                    <input type="number" name="uses" placeholder="number of uses" required>
+                    <input type="date" name="expiry date" required>
+                    <button type="submit">create</button>
+                </form>
+                <button onclick="openModal()">usage</button>
+                <a href="{{ url_for('logout') }}">
+                    <button>logout</button>
+                </a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>license key</th>
+                        <th>uses left</th>
+                        <th>expiry date</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for license in licenses %}
+                    <tr>
+                        <td>{{ license.key }}</td>
+                        <td>{{ license.uses_left }}</td>
+                        <td>{{ license.expiry_date.strftime('%Y-%m-%d') }}</td>
+                        <td>
+                            <form action="{{ url_for('delete_license', id=license.id) }}" method="post">
+                                <button type="submit">delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+            <div class="modal" onclick="event.stopPropagation()">
+                <h2>usage</h2>
+                <p>send a post request to:</p>
+                <strong>{{ request.host_url | trim('/') }}{{ url_for('verify') }}</strong>
+                <p>looking like this:</p>
+                <div class="code-block">{
+    "key": "XXXX-XXXX"
+}</div>
+                <p>valid response:</p>
+                <div class="code-block">{
+    "valid": true,
+    "uses_left": 999999,
+    "expiration": 1893452400
+}</div>
+                <p>invalid response:</p>
+                <div class="code-block">{
+    "valid": false,
+    "message": "error message"
+}</div>
+                <button style="margin-top: 20px;" onclick="closeModal()">close</button>
+            </div>            
+        </div>
+        <script>
+            function openModal() {
+                const modalOverlay = document.getElementById('modalOverlay');
+                modalOverlay.classList.add('show');
+                setTimeout(() => {
+                    modalOverlay.querySelector('.modal').classList.add('show');
+                }, 10);
+            }
+
+            function closeModal() {
+                const modalOverlay = document.getElementById('modalOverlay');
+                modalOverlay.querySelector('.modal').classList.remove('show');
+                setTimeout(() => {
+                    modalOverlay.classList.remove('show');
+                }, 300);
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,125 @@
+body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    color: #007bff;
+    text-align: center;
+    margin-top: 0px;
+}
+
+input, button {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #007bff;
+    background-color: #1a1a1a;
+    color: white;
+    box-sizing: border-box;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #333;
+}
+
+th {
+    background-color: #007bff;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.container {
+    text-align: center;
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+}
+
+.error {
+    color: #ff4444;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.button-group {
+    display: flex;
+    gap: 4px;
+    margin-top: 10px;
+    justify-content: center;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.modal {
+    background: #2a2a2a;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    text-align: center;
+    transform: scale(0.9);
+    transition: transform 0.3s ease-in-out;
+}
+
+.modal-overlay.show {
+    display: flex;
+    opacity: 1;
+}
+
+.modal.show {
+    transform: scale(1);
+}
+
+.code-block {
+    background: #1e1e1e;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: monospace;
+    text-align: left;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
