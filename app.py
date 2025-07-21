@@ -34,7 +34,7 @@ def login():
     if session.get('logged_in'):
         return redirect(url_for('index'))
     if request.method == 'POST':
-        if request.form['password'] == ADMIN_PASSWORD:
+        if request.form['password'] == admin_password:
             session['logged_in'] = True
             return redirect(url_for('index'))
         return render_template('login.html', error="invalid password")
